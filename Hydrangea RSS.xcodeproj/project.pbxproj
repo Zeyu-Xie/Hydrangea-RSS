@@ -14,6 +14,7 @@
 		93D96CFE2C6F9ECA0016D057 /* Hydrangea_RSSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D96CFD2C6F9ECA0016D057 /* Hydrangea_RSSTests.swift */; };
 		93D96D082C6F9ECA0016D057 /* Hydrangea_RSSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D96D072C6F9ECA0016D057 /* Hydrangea_RSSUITests.swift */; };
 		93D96D0A2C6F9ECA0016D057 /* Hydrangea_RSSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D96D092C6F9ECA0016D057 /* Hydrangea_RSSUITestsLaunchTests.swift */; };
+		93F2CC552C6FA8C100F4D992 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2CC542C6FA8C100F4D992 /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		93D96D072C6F9ECA0016D057 /* Hydrangea_RSSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hydrangea_RSSUITests.swift; sourceTree = "<group>"; };
 		93D96D092C6F9ECA0016D057 /* Hydrangea_RSSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hydrangea_RSSUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		93F2CC532C6FA23B00F4D992 /* Hydrangea RSS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hydrangea RSS.entitlements"; sourceTree = "<group>"; };
+		93F2CC542C6FA8C100F4D992 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				93F2CC532C6FA23B00F4D992 /* Hydrangea RSS.entitlements */,
 				93D96CEC2C6F9EC90016D057 /* Hydrangea_RSSApp.swift */,
 				93D96CEE2C6F9EC90016D057 /* ContentView.swift */,
+				93F2CC542C6FA8C100F4D992 /* Settings.swift */,
 				93D96CF02C6F9ECA0016D057 /* Assets.xcassets */,
 				93D96CF22C6F9ECA0016D057 /* Preview Content */,
 			);
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93F2CC552C6FA8C100F4D992 /* Settings.swift in Sources */,
 				93D96CEF2C6F9EC90016D057 /* ContentView.swift in Sources */,
 				93D96CED2C6F9EC90016D057 /* Hydrangea_RSSApp.swift in Sources */,
 			);
@@ -430,7 +434,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Hydrangea-RSS-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Hydrangea RSS";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -463,7 +467,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Hydrangea-RSS-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Hydrangea RSS";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
