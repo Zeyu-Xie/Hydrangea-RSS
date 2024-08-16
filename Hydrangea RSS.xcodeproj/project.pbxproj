@@ -44,6 +44,7 @@
 		93D96D032C6F9ECA0016D057 /* Hydrangea RSSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hydrangea RSSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93D96D072C6F9ECA0016D057 /* Hydrangea_RSSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hydrangea_RSSUITests.swift; sourceTree = "<group>"; };
 		93D96D092C6F9ECA0016D057 /* Hydrangea_RSSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hydrangea_RSSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		93F2CC532C6FA23B00F4D992 /* Hydrangea RSS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hydrangea RSS.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +95,7 @@
 		93D96CEB2C6F9EC90016D057 /* Hydrangea RSS */ = {
 			isa = PBXGroup;
 			children = (
+				93F2CC532C6FA23B00F4D992 /* Hydrangea RSS.entitlements */,
 				93D96CEC2C6F9EC90016D057 /* Hydrangea_RSSApp.swift */,
 				93D96CEE2C6F9EC90016D057 /* ContentView.swift */,
 				93D96CF02C6F9ECA0016D057 /* Assets.xcassets */,
@@ -419,12 +421,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Hydrangea RSS/Hydrangea RSS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Hydrangea RSS/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "Hydrangea\\ RSS";
 				DEVELOPMENT_TEAM = ZR59599HJV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Hydrangea-RSS-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Hydrangea RSS";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -448,12 +454,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Hydrangea RSS/Hydrangea RSS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Hydrangea RSS/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "Hydrangea\\ RSS";
 				DEVELOPMENT_TEAM = ZR59599HJV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Hydrangea-RSS-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Hydrangea RSS";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
