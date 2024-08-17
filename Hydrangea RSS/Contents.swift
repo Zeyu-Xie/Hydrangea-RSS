@@ -13,20 +13,22 @@ struct Contents: View {
     }
     
     var body: some View {
-        ScrollView {
-            ForEach(rssFeedViewModel.items) { item in
-                FeedLabelView(
-                    title: item.title,
-                    link: item.link,
-                    description: item.description.string,
-                    pubDate: item.pubDate,
-                    author: item.generator,
-                    imageURL: item.imageURL
-                )
-                Divider()
-            }
-        }.onAppear {
-            rssFeedViewModel.fetchRSSFeed()
+        NavigationStack {
+            ScrollView {
+                ForEach(rssFeedViewModel.items) { item in
+                    FeedLabelView(
+                        title: item.title,
+                        link: item.link,
+                        description: item.description.string,
+                        pubDate: item.pubDate,
+                        author: item.generator,
+                        imageURL: item.imageURL
+                    )
+                    Divider()
+                }
+            }.onAppear {
+                rssFeedViewModel.fetchRSSFeed()
+            }.navigationTitle("Contents")
         }
     }
     

@@ -10,14 +10,19 @@ struct FeedLabelView: View {
     var imageURL: String?
     
     var body: some View {
+        
         VStack(alignment: .center) {
-            
             if let imageURL = imageURL, let url = URL(string: imageURL) {
-                URLImage(url) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                }
+                GeometryReader { geometry in
+                    URLImage(url) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: geometry.size.width, height: geometry.size.width / 2.35)
+                            .clipped()
+                    }
+                }.frame(height: UIScreen.main.bounds.width / 2.35)
+                
             }
             HStack {
                 VStack {
@@ -36,4 +41,5 @@ struct FeedLabelView: View {
             }
         }.padding().frame(alignment: .center)
     }
+    
 }
