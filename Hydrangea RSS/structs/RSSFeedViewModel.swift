@@ -2,10 +2,15 @@ import Foundation
 import Combine
 
 class RSSFeedViewModel: ObservableObject {
+    
     @Published var items: [RSSItem] = []
+    @Published private var selectedItem: String = ""
 
     func fetchRSSFeed() {
-        guard let url = URL(string: "https://rsshub.app/caixin/article") else { return }
+        
+        selectedItem = UserDefaults.standard.string(forKey: "selectedItem")!
+        
+        guard let url = URL(string: selectedItem) else { return }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else { return }

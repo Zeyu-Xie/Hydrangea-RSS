@@ -3,8 +3,11 @@ import SwiftUI
 
 struct Contents: View {
     
+    @State private var selectedFeedSource: String = ""
+    
     @State private var rssFeedSources: [String] = []
     @StateObject private var rssFeedViewModel = RSSFeedViewModel()
+    @State private var showingAlert: Bool = false
     
     init() {
         if UserDefaults.standard.array(forKey: "rssFeedSources") == nil {
@@ -15,6 +18,9 @@ struct Contents: View {
     var body: some View {
         NavigationStack {
             ScrollView {
+                NavigationLink(destination: SourceSwitch()) {
+                    Text("Switch RSS Source")
+                }
                 ForEach(rssFeedViewModel.items) { item in
                     FeedLabelView(
                         title: item.title,
