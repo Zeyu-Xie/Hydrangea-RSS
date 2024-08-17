@@ -4,7 +4,8 @@ import SwiftUI
 struct Contents: View {
     
     @State private var rssFeedSources: [String] = []
-
+    @StateObject private var rssFeedViewModel = RSSFeedViewModel()
+    
     init() {
         if UserDefaults.standard.array(forKey: "rssFeedSources") == nil {
             UserDefaults.standard.set([], forKey: "rssFeedSources")
@@ -12,13 +13,20 @@ struct Contents: View {
     }
     
     var body: some View {
-        List {
-            ForEach(rssFeedSources, id: \.self) { item in
-                Text(item)
+        NavigationView {
+            List(rssFeedViewModel.items) { item in
+                VStack(alignment: .leading) {
+                    Text(item.title)
+                        .font(.headline)
+                    Text(item.pubDate)
+                        .font(.subheadline)
+                    HTMLTextView(html: item.description)
+                        .frame(minHeight: 100)
+                }
             }
-        }.onAppear {
-            if let savedArray = UserDefaults.standard.array(forKey: "rssFeedSources") as? [String] {
-                rssFeedSources = savedArray
+            .navigationTitle("RSS Feed")
+            .onAppear {
+                rssFeedViewModel.fetchRSSFeed()
             }
         }
     }
