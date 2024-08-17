@@ -26,18 +26,18 @@ struct FeedLabelView: View {
             }
             
             VStack {
-                Text(title).bold()
-                if (link != nil) {
-                    Link(destination: URL(string: link!)!) {
-                        Text("Website")
-                    }
+                
+                NavigationLink(destination: FeedContentView(
+                    title: self.title,
+                    link: self.link,
+                    description: self.description,
+                    pubDate: self.pubDate,
+                    author: self.author,
+                    imageURL: self.imageURL
+                )) {
+                    Text(title).bold()
                 }
-                if (pubDate != nil) {
-                    Text(pubDate!)
-                }
-                if (author != nil) {
-                    Text(author!)
-                }
+                
             }
             
         }.padding().frame(alignment: .center)

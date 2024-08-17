@@ -11,7 +11,7 @@ struct Contents: View {
     }
     
     @State private var rssFeedSources: [String] = []
-    @StateObject private var feedContentView = FeedContentView()
+    @StateObject private var feedListView = FeedListView()
     @State private var showingAlert: Bool = false
     
     init() {
@@ -33,8 +33,8 @@ struct Contents: View {
                 
                 Divider().padding()
                 
-                if (!feedContentView.items.isEmpty) {
-                    ForEach(feedContentView.items) { item in
+                if (!feedListView.items.isEmpty) {
+                    ForEach(feedListView.items) { item in
                         FeedLabelView(
                             title: item.title,
                             link: item.link,
@@ -54,7 +54,7 @@ struct Contents: View {
                     
                 }
             }.onAppear {
-                feedContentView.fetchRSSFeed()
+                feedListView.fetchRSSFeed()
                 
                 // Get rssFeedSources - Case [...]
                 if let savedArray = UserDefaults.standard.array(forKey: "rssFeedSources") as? [String] {
@@ -65,9 +65,9 @@ struct Contents: View {
     }
     
     private func fetchAndRenderRSSFeed() {
-        feedContentView.fetchRSSFeed()
+        feedListView.fetchRSSFeed()
         DispatchQueue.main.async {
-            self.feedContentView.items = self.feedContentView.items // 触发视图更新
+            self.feedListView.items = self.feedListView.items // 触发视图更新
         }
     }
 }

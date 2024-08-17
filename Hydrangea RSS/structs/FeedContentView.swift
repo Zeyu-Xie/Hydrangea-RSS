@@ -1,33 +1,50 @@
-import Foundation
-import Combine
+import SwiftUI
+import URLImage
 
-class FeedContentView: ObservableObject {
+struct FeedContentView: View {
+    var title: String
+    var link: String?
+    var description: String?
+    var pubDate: String?
+    var author: String?
+    var imageURL: String?
     
-    @Published var items: [RSSItem] = []
-    @Published private var selectedItem: String = ""
-
-    func fetchRSSFeed() {
-        
-        items = []
-        
-        selectedItem = UserDefaults.standard.string(forKey: "selectedFeedSource") ?? ""
-        
-        guard let url = URL(string: selectedItem) else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else { return }
-            self.parse(data: data)
-        }.resume()
-    }
-
-    private func parse(data: Data) {
-        let parser = XMLParser(data: data)
-        let rssParserDelegate = RSSParserDelegate()
-        parser.delegate = rssParserDelegate
-
-        if parser.parse() {
-            DispatchQueue.main.async {
-                self.items = rssParserDelegate.items
+    var body: some View {
+        VStack(alignment: .center) {
+            NavigationStack {
+                ScrollView {
+                    if let imageURL = imageURL, let url = URL(string: imageURL) {
+                        URLImage(url) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        }
+                    }
+                    VStack(alignment: .leading) {
+                        Text(title).font(.title).padding(.vertical)
+                        if (author != nil) {
+                            Text(author!).foregroundStyle(.secondary).font(.subheadline)
+                        }
+                        if (description != nil) {
+                            Text(description!)
+                        }
+                        Divider()
+                        if (pubDate != nil) {
+                            HStack {
+                                Spacer()
+                                Text(pubDate!).foregroundStyle(.secondary).font(.subheadline)
+                            }
+                        }
+                        if (link != nil) {
+                            HStack {
+                                Spacer()
+                                Link(destination: URL(string: link!)!) {
+                                    Text("Read Origin").font(.subheadline)
+                                }
+                            }
+                        }
+                    }.padding(.horizontal)
+                }.navigationTitle(self.title).navigationBarTitleDisplayMode(.inline)
             }
         }
     }
