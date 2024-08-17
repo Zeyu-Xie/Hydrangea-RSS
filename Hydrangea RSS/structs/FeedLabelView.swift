@@ -28,7 +28,9 @@ struct FeedLabelView: View {
             VStack {
                 Text(title).bold()
                 if (link != nil) {
-                    Text(link!)
+                    Link(destination: URL(string: link!)!) {
+                        Text("Website")
+                    }
                 }
                 if (pubDate != nil) {
                     Text(pubDate!)

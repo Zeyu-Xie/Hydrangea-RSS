@@ -10,6 +10,8 @@ import SwiftUI
 
 struct SourceSwitch: View {
     
+    @Environment(\.dismiss) var dismiss
+    
     @State private var rssFeedSources: [String] = []
     
     init() {
@@ -27,6 +29,7 @@ struct SourceSwitch: View {
                     ForEach(rssFeedSources, id: \.self) { item in
                         Button(action: {
                             UserDefaults.standard.set(item, forKey: "selectedFeedSource")
+                            dismiss()
                         }) {
                             Text(item)
                         }
