@@ -19,6 +19,12 @@ struct Settings: View {
                     }
                 }
                 
+                Section(header: Text("Feed")) {
+                    NavigationLink(destination: RSSFeedSources()) {
+                        Text("RSS Feed Sources")
+                    }
+                }
+                
                 Section(header: Text("Account")) {
                     NavigationLink(destination: Text("Privacy Settings")) {
                         Text("Privacy")
