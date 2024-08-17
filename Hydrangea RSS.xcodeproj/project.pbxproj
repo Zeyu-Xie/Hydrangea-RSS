@@ -10,7 +10,7 @@
 		9312F1442C70568B001843E6 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 9312F1432C70568B001843E6 /* URLImage */; };
 		9312F1462C70568B001843E6 /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = 9312F1452C70568B001843E6 /* URLImageStore */; };
 		932E9FCB2C70372F008F7E12 /* RSSItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E9FCA2C70372F008F7E12 /* RSSItem.swift */; };
-		932E9FCD2C703762008F7E12 /* RSSFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E9FCC2C703762008F7E12 /* RSSFeedViewModel.swift */; };
+		932E9FCD2C703762008F7E12 /* FeedContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E9FCC2C703762008F7E12 /* FeedContentView.swift */; };
 		932E9FCF2C703782008F7E12 /* RSSParserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E9FCE2C703782008F7E12 /* RSSParserDelegate.swift */; };
 		932E9FD32C70392D008F7E12 /* HTMLTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E9FD22C70392D008F7E12 /* HTMLTextView.swift */; };
 		932E9FD52C703B7D008F7E12 /* FeedLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E9FD42C703B7D008F7E12 /* FeedLabelView.swift */; };
@@ -46,7 +46,7 @@
 
 /* Begin PBXFileReference section */
 		932E9FCA2C70372F008F7E12 /* RSSItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSItem.swift; sourceTree = "<group>"; };
-		932E9FCC2C703762008F7E12 /* RSSFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedViewModel.swift; sourceTree = "<group>"; };
+		932E9FCC2C703762008F7E12 /* FeedContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedContentView.swift; sourceTree = "<group>"; };
 		932E9FCE2C703782008F7E12 /* RSSParserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSParserDelegate.swift; sourceTree = "<group>"; };
 		932E9FD22C70392D008F7E12 /* HTMLTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLTextView.swift; sourceTree = "<group>"; };
 		932E9FD42C703B7D008F7E12 /* FeedLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLabelView.swift; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 				932E9FCA2C70372F008F7E12 /* RSSItem.swift */,
 				932E9FD22C70392D008F7E12 /* HTMLTextView.swift */,
 				932E9FD42C703B7D008F7E12 /* FeedLabelView.swift */,
-				932E9FCC2C703762008F7E12 /* RSSFeedViewModel.swift */,
+				932E9FCC2C703762008F7E12 /* FeedContentView.swift */,
 				932E9FCE2C703782008F7E12 /* RSSParserDelegate.swift */,
 			);
 			path = structs;
@@ -325,7 +325,7 @@
 				93C5AFF52C70839200DF7B4C /* SourceSwitch.swift in Sources */,
 				93CD8E2C2C7032A400EE60EC /* Contents.swift in Sources */,
 				932E9FCF2C703782008F7E12 /* RSSParserDelegate.swift in Sources */,
-				932E9FCD2C703762008F7E12 /* RSSFeedViewModel.swift in Sources */,
+				932E9FCD2C703762008F7E12 /* FeedContentView.swift in Sources */,
 				932E9FD32C70392D008F7E12 /* HTMLTextView.swift in Sources */,
 				932E9FD52C703B7D008F7E12 /* FeedLabelView.swift in Sources */,
 				93D96CEF2C6F9EC90016D057 /* ContentView.swift in Sources */,

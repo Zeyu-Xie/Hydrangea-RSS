@@ -11,9 +11,9 @@ import SwiftUI
 struct SourceSwitch: View {
     
     @State private var rssFeedSources: [String] = []
-    @State private var selectedItem: String = ""
     
     init() {
+        // Get rssFeedSources - Case nil
         if UserDefaults.standard.array(forKey: "rssFeedSources") == nil {
             UserDefaults.standard.set([], forKey: "rssFeedSources")
         }
@@ -21,20 +21,25 @@ struct SourceSwitch: View {
     
     var body: some View {
         
-        ScrollView {
-            ForEach(rssFeedSources, id: \.self) { item in
-                Button(action: {
-                    UserDefaults.standard.set(item, forKey: "selectedItem")
-                }, label: {
-                    Text(item)
-                })
+        NavigationStack {
+            List {
+                Section(header: Text("Local Sources")) {
+                    ForEach(rssFeedSources, id: \.self) { item in
+                        Button(action: {
+                            UserDefaults.standard.set(item, forKey: "selectedFeedSource")
+                        }) {
+                            Text(item)
+                        }
+                    }
+                }
             }
+            .navigationTitle("Source Switch")
         }.onAppear {
+            // Get rssFeedSources - Case [...]
             if let savedArray = UserDefaults.standard.array(forKey: "rssFeedSources") as? [String] {
                 rssFeedSources = savedArray
             }
         }
-        
         
     }
 }

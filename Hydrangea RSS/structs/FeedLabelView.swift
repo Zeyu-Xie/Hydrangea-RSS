@@ -24,21 +24,20 @@ struct FeedLabelView: View {
                 }.frame(height: UIScreen.main.bounds.width / 2.35)
                 
             }
-            HStack {
-                VStack {
-                    Text(title).bold()
-                    if (link != nil) {
-                        Text(link!)
-                    }
-                    if (pubDate != nil) {
-                        Text(pubDate!)
-                    }
-                    if (author != nil) {
-                        Text(author!)
-                    }
+            
+            VStack {
+                Text(title).bold()
+                if (link != nil) {
+                    Text(link!)
                 }
-                Spacer()
+                if (pubDate != nil) {
+                    Text(pubDate!)
+                }
+                if (author != nil) {
+                    Text(author!)
+                }
             }
+            
         }.padding().frame(alignment: .center)
     }
     

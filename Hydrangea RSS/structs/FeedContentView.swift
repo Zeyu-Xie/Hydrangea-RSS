@@ -1,14 +1,16 @@
 import Foundation
 import Combine
 
-class RSSFeedViewModel: ObservableObject {
+class FeedContentView: ObservableObject {
     
     @Published var items: [RSSItem] = []
     @Published private var selectedItem: String = ""
 
     func fetchRSSFeed() {
         
-        selectedItem = UserDefaults.standard.string(forKey: "selectedItem")!
+        items = []
+        
+        selectedItem = UserDefaults.standard.string(forKey: "selectedFeedSource")!
         
         guard let url = URL(string: selectedItem) else { return }
         

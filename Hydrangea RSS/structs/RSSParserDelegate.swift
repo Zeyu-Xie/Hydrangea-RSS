@@ -28,18 +28,18 @@ class RSSParserDelegate: NSObject, XMLParserDelegate {
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         switch currentElement {
-        case "title":
-            title += string
-        case "link":
-            link += string
-        case "description":
-            _description += string
-        case "pubDate":
-            pubDate += string
-        case "author":
-            author += string
-        default:
-            break
+            case "title":
+                title += string
+            case "link":
+                link += string
+            case "description":
+                _description += string
+            case "pubDate":
+                pubDate += string
+            case "author":
+                author += string
+            default:
+                break
         }
     }
     
