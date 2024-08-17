@@ -7,6 +7,7 @@ class RSSParserDelegate: NSObject, XMLParserDelegate {
     private var currentTitle = ""
     private var currentDescription = ""
     private var currentPubDate = ""
+    private var currentGenerator = ""
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         currentElement = elementName
@@ -25,6 +26,8 @@ class RSSParserDelegate: NSObject, XMLParserDelegate {
             currentDescription += string
         case "pubDate":
             currentPubDate += string
+        case "generator":
+            currentGenerator += string
         default:
             break
         }
@@ -36,7 +39,8 @@ class RSSParserDelegate: NSObject, XMLParserDelegate {
             let rssItem = RSSItem(
                 title: currentTitle.trimmingCharacters(in: .whitespacesAndNewlines),
                 description: attributedDescription,
-                pubDate: currentPubDate.trimmingCharacters(in: .whitespacesAndNewlines)
+                pubDate: currentPubDate.trimmingCharacters(in: .whitespacesAndNewlines),
+                generator: currentGenerator.trimmingCharacters(in: .whitespacesAndNewlines)
             )
             items.append(rssItem)
         }

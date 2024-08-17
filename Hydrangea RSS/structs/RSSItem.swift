@@ -5,4 +5,5 @@ struct RSSItem: Identifiable {
     let title: String
     let description: NSAttributedString
     let pubDate: String
+    let generator: String
 }

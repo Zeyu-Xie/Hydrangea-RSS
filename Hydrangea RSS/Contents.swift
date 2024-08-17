@@ -15,14 +15,7 @@ struct Contents: View {
     var body: some View {
         NavigationView {
             List(rssFeedViewModel.items) { item in
-                VStack(alignment: .leading) {
-                    Text(item.title)
-                        .font(.headline)
-                    Text(item.pubDate)
-                        .font(.subheadline)
-                    HTMLTextView(html: item.description)
-                        .frame(minHeight: 100)
-                }
+                FeedLabelView(labelText: item.title, labelGenerator: item.generator)
             }
             .navigationTitle("RSS Feed")
             .onAppear {
