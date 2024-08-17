@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9312F1442C70568B001843E6 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 9312F1432C70568B001843E6 /* URLImage */; };
+		9312F1462C70568B001843E6 /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = 9312F1452C70568B001843E6 /* URLImageStore */; };
 		932E9FCB2C70372F008F7E12 /* RSSItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E9FCA2C70372F008F7E12 /* RSSItem.swift */; };
 		932E9FCD2C703762008F7E12 /* RSSFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E9FCC2C703762008F7E12 /* RSSFeedViewModel.swift */; };
 		932E9FCF2C703782008F7E12 /* RSSParserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E9FCE2C703782008F7E12 /* RSSParserDelegate.swift */; };
-		932E9FD12C70389D008F7E12 /* extension_String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E9FD02C70389D008F7E12 /* extension_String.swift */; };
 		932E9FD32C70392D008F7E12 /* HTMLTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E9FD22C70392D008F7E12 /* HTMLTextView.swift */; };
 		932E9FD52C703B7D008F7E12 /* FeedLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E9FD42C703B7D008F7E12 /* FeedLabelView.swift */; };
 		93CD8E2A2C702D4C00EE60EC /* RSSFeedSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CD8E292C702D4C00EE60EC /* RSSFeedSources.swift */; };
@@ -46,7 +47,6 @@
 		932E9FCA2C70372F008F7E12 /* RSSItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSItem.swift; sourceTree = "<group>"; };
 		932E9FCC2C703762008F7E12 /* RSSFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedViewModel.swift; sourceTree = "<group>"; };
 		932E9FCE2C703782008F7E12 /* RSSParserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSParserDelegate.swift; sourceTree = "<group>"; };
-		932E9FD02C70389D008F7E12 /* extension_String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension_String.swift; sourceTree = "<group>"; };
 		932E9FD22C70392D008F7E12 /* HTMLTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLTextView.swift; sourceTree = "<group>"; };
 		932E9FD42C703B7D008F7E12 /* FeedLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLabelView.swift; sourceTree = "<group>"; };
 		93CD8E292C702D4C00EE60EC /* RSSFeedSources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedSources.swift; sourceTree = "<group>"; };
@@ -70,6 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9312F1462C70568B001843E6 /* URLImageStore in Frameworks */,
+				9312F1442C70568B001843E6 /* URLImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,7 +99,6 @@
 				932E9FD22C70392D008F7E12 /* HTMLTextView.swift */,
 				932E9FD42C703B7D008F7E12 /* FeedLabelView.swift */,
 				932E9FCC2C703762008F7E12 /* RSSFeedViewModel.swift */,
-				932E9FD02C70389D008F7E12 /* extension_String.swift */,
 				932E9FCE2C703782008F7E12 /* RSSParserDelegate.swift */,
 			);
 			path = structs;
@@ -188,6 +189,10 @@
 			dependencies = (
 			);
 			name = "Hydrangea RSS";
+			packageProductDependencies = (
+				9312F1432C70568B001843E6 /* URLImage */,
+				9312F1452C70568B001843E6 /* URLImageStore */,
+			);
 			productName = "Hydrangea RSS";
 			productReference = 93D96CE92C6F9EC90016D057 /* Hydrangea RSS.app */;
 			productType = "com.apple.product-type.application";
@@ -260,6 +265,9 @@
 				Base,
 			);
 			mainGroup = 93D96CE02C6F9EC90016D057;
+			packageReferences = (
+				9312F1422C70568B001843E6 /* XCRemoteSwiftPackageReference "url-image" */,
+			);
 			productRefGroup = 93D96CEA2C6F9EC90016D057 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -312,7 +320,6 @@
 				932E9FCB2C70372F008F7E12 /* RSSItem.swift in Sources */,
 				93D96CED2C6F9EC90016D057 /* Hydrangea_RSSApp.swift in Sources */,
 				93CD8E2A2C702D4C00EE60EC /* RSSFeedSources.swift in Sources */,
-				932E9FD12C70389D008F7E12 /* extension_String.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,6 +657,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9312F1422C70568B001843E6 /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9312F1432C70568B001843E6 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9312F1422C70568B001843E6 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+		9312F1452C70568B001843E6 /* URLImageStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9312F1422C70568B001843E6 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImageStore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 93D96CE12C6F9EC90016D057 /* Project object */;
 }

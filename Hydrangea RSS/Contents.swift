@@ -13,14 +13,21 @@ struct Contents: View {
     }
     
     var body: some View {
-        NavigationView {
-            List(rssFeedViewModel.items) { item in
-                FeedLabelView(labelText: item.title, labelGenerator: item.generator)
+        ScrollView {
+            ForEach(rssFeedViewModel.items) { item in
+                FeedLabelView(
+                    title: item.title,
+                    link: item.link,
+                    description: item.description.string,
+                    pubDate: item.pubDate,
+                    author: item.generator,
+                    imageURL: item.imageURL
+                )
+                Divider()
             }
-            .navigationTitle("RSS Feed")
-            .onAppear {
-                rssFeedViewModel.fetchRSSFeed()
-            }
+        }.onAppear {
+            rssFeedViewModel.fetchRSSFeed()
         }
     }
+    
 }

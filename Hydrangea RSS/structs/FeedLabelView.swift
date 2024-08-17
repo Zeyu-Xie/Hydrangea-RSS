@@ -1,19 +1,39 @@
 import SwiftUI
+import URLImage
 
 struct FeedLabelView: View {
-    var labelText: String
-    var labelTime: String?
-    var labelGenerator: String?
+    var title: String
+    var link: String?
+    var description: String?
+    var pubDate: String?
+    var author: String?
+    var imageURL: String?
     
     var body: some View {
-        VStack {
-            Text(labelText)
-            if let time = labelTime {
-                Text(time)
+        VStack(alignment: .center) {
+            
+            if let imageURL = imageURL, let url = URL(string: imageURL) {
+                URLImage(url) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                }
             }
-            if let generator = labelGenerator {
-                Text(generator)
+            HStack {
+                VStack {
+                    Text(title).bold()
+                    if (link != nil) {
+                        Text(link!)
+                    }
+                    if (pubDate != nil) {
+                        Text(pubDate!)
+                    }
+                    if (author != nil) {
+                        Text(author!)
+                    }
+                }
+                Spacer()
             }
-        }
+        }.padding().frame(alignment: .center)
     }
 }
