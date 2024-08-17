@@ -10,7 +10,7 @@ class FeedContentView: ObservableObject {
         
         items = []
         
-        selectedItem = UserDefaults.standard.string(forKey: "selectedFeedSource")!
+        selectedItem = UserDefaults.standard.string(forKey: "selectedFeedSource") ?? ""
         
         guard let url = URL(string: selectedItem) else { return }
         

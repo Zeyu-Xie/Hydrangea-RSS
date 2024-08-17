@@ -31,6 +31,8 @@ struct Contents: View {
                     }
                 }.padding(.horizontal)
                 
+                Divider().padding()
+                
                 if (!feedContentView.items.isEmpty) {
                     ForEach(feedContentView.items) { item in
                         FeedLabelView(
@@ -45,7 +47,11 @@ struct Contents: View {
                     }
                 }
                 else {
-                    Text("Your source: \n\(UserDefaults.standard.string(forKey: "selectedFeedSource") ?? "")\ndoes not have any feeds now.")
+                    HStack {
+                        Text("Your source \(Text(UserDefaults.standard.string(forKey: "selectedFeedSource") ?? "").foregroundStyle(.link))\ndoes not have any feeds now.").multilineTextAlignment(.leading)
+                        Spacer()
+                    }.padding(.horizontal)
+                    
                 }
             }.onAppear {
                 feedContentView.fetchRSSFeed()
