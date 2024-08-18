@@ -1,27 +1,27 @@
 import Foundation
 import Combine
 
-class RSSList: Identifiable {
+class RSSList: ObservableObject, Identifiable {
     
     // First Class - source
-    var source: String
+    @Published var source: String
     
     // Second Class - data
     let id = UUID()
-    var title: String?
-    var link: String?
-    var description: NSAttributedString?
-    var lastBuildDate: String?
-    var generator: String?
-    var webMaster: String?
-    var language: String?
-    var ttl: Int?
+    @Published var title: String?
+    @Published var link: String?
+    @Published var description: NSAttributedString?
+    @Published var lastBuildDate: String?
+    @Published var generator: String?
+    @Published var webMaster: String?
+    @Published var language: String?
+    @Published var ttl: Int?
     
     // Third Class - item list
-    var list: [RSSItem]
+    @Published var list: [RSSItem]
     
     // Fourth Class - status
-    var isLoading: Bool
+    @Published var isLoading: Bool
     
     // Init
     init(source: String) {
@@ -61,7 +61,7 @@ class RSSList: Identifiable {
     // Method - load
     func load(completion: @escaping () -> Void) {
         self.isLoading = true
-        
+    
         guard let url = URL(string: self.source) else {
             self.isLoading = false
             completion()
@@ -131,14 +131,6 @@ struct coreData {
 class RSSParserDelegate: NSObject, XMLParserDelegate {
     var items: [RSSItem] = []
     var isParsingItems: Bool = false
-    
-    //    var title: String = ""
-    //    var link: String = ""
-    //    var _description: String = ""
-    //    var generator: String = ""
-    //    var webMaster: String = ""
-    //    var language: String = ""
-    //    var ttl: String = ""
     
     var cd: coreData = coreData()
     

@@ -3,17 +3,7 @@ import SwiftUI
 
 struct Contents: View {
     
-    @State private var rssFeedSources: [String] = []
-    @State private var rssList: RSSList = RSSList(source: "https://rsshub.app/caixin/article")
-    @State private var list: [RSSItem] = []
-    @State private var showingAlert: Bool = false
-    
-    init() {
-        // Initialize rssFeedSources in UserDefaults if nil
-        if UserDefaults.standard.array(forKey: "rssFeedSources") == nil {
-            UserDefaults.standard.set([], forKey: "rssFeedSources")
-        }
-    }
+    @StateObject private var rssList: RSSList = RSSList(source: "")
     
     var body: some View {
         NavigationStack {
@@ -31,12 +21,28 @@ struct Contents: View {
                     
                     Divider().padding(.vertical)
                     
-                    if list.isEmpty {
-                        Text("Your source \(Text(UserDefaults.standard.string(forKey: "selectedFeedSource") ?? "").foregroundStyle(.link)) does not have any feeds now.")
-                            .multilineTextAlignment(.leading)
-                            .padding(.vertical)
+                    if rssList.list.isEmpty {
+                        
+                        // Blank & Loading
+                        if rssList.isLoading {
+                            LoadingView()
+                        }
+                        
+                        // Blank & Loaded
+                        else {
+                            Text("Your source \(Text(UserDefaults.standard.string(forKey: "selectedFeedSource") ?? "").foregroundStyle(.link)) does not have any feeds now.")
+                                .multilineTextAlignment(.leading)
+                                .padding(.vertical)
+                        }
                     } else {
-                        ForEach(list) { item in
+                        
+                        // Not Blank & Loading
+                        if rssList.isLoading {
+                            LoadingView()
+                        }
+                        
+                        // Not Blank
+                        ForEach(rssList.list) { item in
                             NavigationLink(destination: FeedContentView(
                                 title: item.title,
                                 link: item.link,
@@ -64,7 +70,7 @@ struct Contents: View {
             .onAppear {
                 rssList.source = UserDefaults.standard.string(forKey: "selectedFeedSource")!
                 rssList.load(completion: {
-                    list = rssList.list
+                    
                 })
             }
             .navigationTitle("Contents")
