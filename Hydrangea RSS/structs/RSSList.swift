@@ -1,5 +1,44 @@
+//
+//  RSSList.swift
+//  Hydrangea RSS
+//
+//  Created by Zeyu Xie on 2024/8/18.
+//
+
 import Foundation
 import Combine
+
+struct RSSList: Identifiable {
+    
+    // First Class - source
+    let source: String
+    
+    // Second Class - data
+    let id = UUID()
+    let title: String?
+    let link: String?
+    let description: NSAttributedString?
+    let lastBuildDate: String?
+    let generator: String?
+    let webMaster: String?
+    let language: String?
+    let ttl: Int?
+    
+    // Third Class - item list
+    let list: [RSSItem]
+    
+    // Fourth Class - status
+    let status: String
+    
+    // Method - load
+    func load() {
+        
+    }
+    
+//    func renderAsList() -> FeedListView {
+//        
+//    }
+}
 
 class FeedListView: ObservableObject {
     
