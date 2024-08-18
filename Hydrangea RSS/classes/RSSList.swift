@@ -101,126 +101,19 @@ class RSSList: ObservableObject, Identifiable {
     }
 }
 
-func parse(data: Data, completion: @escaping ([RSSItem], coreData) -> Void) {
+func parse(data: Data, completion: @escaping ([RSSItem], RSSListCoreData) -> Void) {
     let parser = XMLParser(data: data)
     let rssParserDelegate = RSSParserDelegate()
     parser.delegate = rssParserDelegate
     
     if parser.parse() {
         DispatchQueue.main.async {
-            let resultArray = rssParserDelegate.items
-            let cd = rssParserDelegate.cd
+            let resultArray = rssParserDelegate.rssListItems
+            let cd = rssParserDelegate.rssListCoreData
             completion(resultArray, cd)
         }
     } else {
-        completion([], coreData())
+        completion([], RSSListCoreData())
     }
 }
 
-struct coreData {
-    var title: String = ""
-    var link: String? = nil
-    var description: String? = nil
-    var generator: String? = nil
-    var webMaster: String? = nil
-    var language: String? = nil
-    var lastBuildDate: String? = nil
-    var ttl: String? = nil
-}
-
-class RSSParserDelegate: NSObject, XMLParserDelegate {
-    var items: [RSSItem] = []
-    var isParsingItems: Bool = false
-    
-    var cd: coreData = coreData()
-    
-    var currentElement: String = ""
-    var currentTitle: String = ""
-    var currentLink: String = ""
-    var currentDescription: String = ""
-    var currentPubDate: String = ""
-    var currentAuthor: String = ""
-    var currentImageURL: String = ""
-    
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        currentElement = elementName
-        
-        if elementName == "item" {
-            isParsingItems = true
-            currentTitle = ""
-            currentLink = ""
-            currentDescription = ""
-            currentPubDate = ""
-            currentAuthor = ""
-            currentImageURL = ""
-        }
-        
-        else if elementName == "itunes:image" {
-            if isParsingItems {
-                currentImageURL = attributeDict["href"]!
-            }
-        }
-        
-    }
-    
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
-        if isParsingItems {
-            switch currentElement {
-            case "title":
-                currentTitle = string
-            case "link":
-                currentLink = string
-            case "description":
-                currentDescription += string
-            case "pubDate":
-                currentPubDate = string
-            case "author":
-                currentAuthor = string
-            default:
-                break
-            }
-        }
-        else {
-            switch currentElement {
-            case "title":
-                cd.title = string
-            case "link":
-                cd.link = string
-            case "description":
-                cd.description = string
-            case "generator":
-                cd.generator = string
-            case "webMaster":
-                cd.webMaster = string
-            case "language":
-                cd.language = string
-            case "lastBuildDate":
-                cd.lastBuildDate = string
-            case "ttl":
-                cd.ttl = string
-            default:
-                break
-            }
-        }
-    }
-    
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName == "items" {
-            isParsingItems = false
-        }
-        
-        if isParsingItems {
-            if elementName == "item" {
-                let rssItem = RSSItem(
-                    title: currentTitle.trimmed()!,
-                    link: currentLink.trimmed(),
-                    description: currentDescription.htmlToAttributedString(),
-                    pubDate: currentPubDate.trimmed(),
-                    generator: currentAuthor.trimmed(),
-                    imageURL: currentImageURL.trimmed()
-                )
-                items.append(rssItem)
-            }
-        }
-    }
-}

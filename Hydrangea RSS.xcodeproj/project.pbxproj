@@ -27,6 +27,8 @@
 		93E8D9922C71AE840021A821 /* extension_NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E8D9912C71AE840021A821 /* extension_NSAttributedString.swift */; };
 		93F2CC552C6FA8C100F4D992 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2CC542C6FA8C100F4D992 /* Settings.swift */; };
 		93F73EEA2C72204C00782FD7 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F73EE92C72204C00782FD7 /* LoadingView.swift */; };
+		93F73EFA2C7244BC00782FD7 /* RSSParserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F73EF92C7244BC00782FD7 /* RSSParserDelegate.swift */; };
+		93F73EFD2C72456400782FD7 /* RSSListCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F73EFC2C72456400782FD7 /* RSSListCoreData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		93F2CC532C6FA23B00F4D992 /* Hydrangea RSS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hydrangea RSS.entitlements"; sourceTree = "<group>"; };
 		93F2CC542C6FA8C100F4D992 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		93F73EE92C72204C00782FD7 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		93F73EF92C7244BC00782FD7 /* RSSParserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RSSParserDelegate.swift; path = "../../../../../.Trash/Hydrangea-RSS/Hydrangea RSS/classes/RSSParserDelegate.swift"; sourceTree = "<group>"; };
+		93F73EFC2C72456400782FD7 /* RSSListCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSListCoreData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				932E9FCA2C70372F008F7E12 /* RSSItem.swift */,
+				93F73EF92C7244BC00782FD7 /* RSSParserDelegate.swift */,
 				93E8D9882C719E670021A821 /* RSSList.swift */,
 			);
 			path = classes;
@@ -146,6 +151,7 @@
 		93D96CEB2C6F9EC90016D057 /* Hydrangea RSS */ = {
 			isa = PBXGroup;
 			children = (
+				93F73EFB2C72454900782FD7 /* structs */,
 				93F73EE82C72203F00782FD7 /* views */,
 				93E8D98A2C71AB400021A821 /* extensions */,
 				932E9FC92C703705008F7E12 /* classes */,
@@ -204,6 +210,14 @@
 				93F73EE92C72204C00782FD7 /* LoadingView.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		93F73EFB2C72454900782FD7 /* structs */ = {
+			isa = PBXGroup;
+			children = (
+				93F73EFC2C72456400782FD7 /* RSSListCoreData.swift */,
+			);
+			path = structs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,11 +364,13 @@
 				93D96CEF2C6F9EC90016D057 /* ContentView.swift in Sources */,
 				932E9FCB2C70372F008F7E12 /* RSSItem.swift in Sources */,
 				93E8D98C2C71AB5B0021A821 /* extensions_String.swift in Sources */,
+				93F73EFA2C7244BC00782FD7 /* RSSParserDelegate.swift in Sources */,
 				93E8D9892C719E680021A821 /* RSSList.swift in Sources */,
 				93D96CED2C6F9EC90016D057 /* Hydrangea_RSSApp.swift in Sources */,
 				93E8D9922C71AE840021A821 /* extension_NSAttributedString.swift in Sources */,
 				93CD8E2A2C702D4C00EE60EC /* RSSFeedSources.swift in Sources */,
 				93F73EEA2C72204C00782FD7 /* LoadingView.swift in Sources */,
+				93F73EFD2C72456400782FD7 /* RSSListCoreData.swift in Sources */,
 				93E8D9902C71ADCB0021A821 /* extensions_UUID.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
