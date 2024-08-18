@@ -2,7 +2,7 @@ import SwiftUI
 import URLImage
 
 struct FeedContentView: View {
-    var title: String
+    var title: String?
     var link: String?
     var description: String?
     var pubDate: String?
@@ -25,9 +25,12 @@ struct FeedContentView: View {
                     }
                     
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(title)
-                            .font(.title)
-                            .fontWeight(.bold)
+                        
+                        if let title = title {
+                            Text(title)
+                                .font(.title)
+                                .fontWeight(.bold)
+                        }
                         
                         if let author = author {
                             Text("By \(author)")
@@ -58,7 +61,7 @@ struct FeedContentView: View {
                 }
                 .padding()
             }
-            .navigationTitle(title)
+            .navigationTitle(title ?? "")
             .navigationBarTitleDisplayMode(.inline)
         }
     }

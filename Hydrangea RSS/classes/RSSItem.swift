@@ -9,7 +9,7 @@ class RSSItem: Identifiable {
     let id = UUID()
     
     // Variable - Data
-    var title: String
+    var title: String?
     var link: String?
     var description: NSAttributedString?
     var pubDate: String?
@@ -17,7 +17,14 @@ class RSSItem: Identifiable {
     var imageURL: String?
     
     // Function - init
-    init(title: String, link: String? = nil, description: NSAttributedString? = nil, pubDate: String? = nil, generator: String? = nil, imageURL: String? = nil) {
+    init(
+        title: String? = nil,
+        link: String? = nil,
+        description: NSAttributedString? = nil,
+        pubDate: String? = nil,
+        generator: String? = nil,
+        imageURL: String? = nil
+    ) {
         self.title = title
         self.link = link
         self.description = description

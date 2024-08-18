@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct FeedCardView: View {
-    var title: String
+    var title: String?
     var link: String?
     var description: String?
     var pubDate: String?
@@ -22,9 +22,11 @@ struct FeedCardView: View {
                 }
             }
             
-            Text(title)
-                .font(.headline)
-                .foregroundColor(.primary)
+            if let title = title {
+                Text(title)
+                    .font(.headline)
+                    .foregroundColor(.primary)
+            }
             
             if let author = author {
                 Text("By \(author)")

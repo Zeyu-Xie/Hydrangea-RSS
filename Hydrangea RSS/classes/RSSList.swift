@@ -8,34 +8,24 @@ class RSSList: ObservableObject, Identifiable {
     
     // Second Class - data
     let id = UUID()
-    @Published var title: String?
-    @Published var link: String?
-    @Published var description: NSAttributedString?
-    @Published var lastBuildDate: String?
-    @Published var generator: String?
-    @Published var webMaster: String?
-    @Published var language: String?
-    @Published var ttl: Int?
+    @Published var title: String? = nil
+    @Published var link: String? = nil
+    @Published var description: NSAttributedString? = nil
+    @Published var lastBuildDate: String? = nil
+    @Published var generator: String? = nil
+    @Published var webMaster: String? = nil
+    @Published var language: String? = nil
+    @Published var ttl: Int? = nil
     
     // Third Class - item list
-    @Published var list: [RSSItem]
+    @Published var list: [RSSItem] = []
     
     // Fourth Class - status
-    @Published var isLoading: Bool
+    @Published var isLoading: Bool = false
     
     // Init
     init(source: String) {
         self.source = source
-        self.title = ""
-        self.link = ""
-        self.description = NSAttributedString("")
-        self.lastBuildDate = ""
-        self.generator = ""
-        self.webMaster = ""
-        self.language = ""
-        self.ttl = 0
-        self.list = []
-        self.isLoading = false
     }
     
     // Method - to string
