@@ -147,25 +147,17 @@ class RSSParserDelegate: NSObject, XMLParserDelegate {
         
         if elementName == "item" {
             isParsingItems = true
+            currentTitle = ""
+            currentLink = ""
+            currentDescription = ""
+            currentPubDate = ""
+            currentAuthor = ""
+            currentImageURL = ""
         }
         
-        if isParsingItems {
-            // 处理 <items> 内部的标签
-            switch elementName {
-            case "title":
-                currentTitle = ""
-            case "link":
-                currentLink = ""
-            case "description":
-                currentDescription = ""
-            case "pubDate":
-                currentPubDate = ""
-            case "author":
-                currentAuthor = ""
-            case "itunes:image":
-                currentImageURL = attributeDict["href"] ?? ""
-            default:
-                break
+        else if elementName == "itunes:image" {
+            if isParsingItems {
+                currentImageURL = attributeDict["href"]!
             }
         }
         
@@ -175,15 +167,15 @@ class RSSParserDelegate: NSObject, XMLParserDelegate {
         if isParsingItems {
             switch currentElement {
             case "title":
-                currentTitle += string
+                currentTitle = string
             case "link":
-                currentLink += string
+                currentLink = string
             case "description":
-                currentDescription += string
+                currentDescription = string
             case "pubDate":
-                currentPubDate += string
+                currentPubDate = string
             case "author":
-                currentAuthor += string
+                currentAuthor = string
             default:
                 break
             }

@@ -16,7 +16,10 @@ struct Contents: View {
                             Text("Switch RSS Source")
                                 .font(.headline)
                                 .foregroundColor(.blue)
+                                .padding()
                         }
+                        .background(Color.clear)
+                        .cornerRadius(8)
                     }
                     
                     Divider().padding(.vertical)
@@ -30,9 +33,10 @@ struct Contents: View {
                         
                         // Blank & Loaded
                         else {
-                            Text("Your source \(Text(UserDefaults.standard.string(forKey: "selectedFeedSource") ?? "").foregroundStyle(.link)) does not have any feeds now.")
+                            Text("Your source \(Text(UserDefaults.standard.string(forKey: "selectedFeedSource") ?? "").foregroundColor(.blue)) does not have any feeds now.")
                                 .multilineTextAlignment(.leading)
                                 .padding(.vertical)
+                                .foregroundColor(.gray)
                         }
                     } else {
                         
@@ -59,8 +63,10 @@ struct Contents: View {
                                     author: item.generator,
                                     imageURL: item.imageURL
                                 )
+                                .background(Color(.systemGray6))
+                                .cornerRadius(8)
                             }
-                            .buttonStyle(PlainButtonStyle()) // Optional: To remove the default NavigationLink styling
+                            .buttonStyle(PlainButtonStyle()) // 保持扁平化按钮样式
                             .padding(.vertical)
                         }
                     }
@@ -69,12 +75,9 @@ struct Contents: View {
             }
             .onAppear {
                 rssList.source = UserDefaults.standard.string(forKey: "selectedFeedSource")!
-                rssList.load(completion: {
-                    
-                })
+                rssList.load(completion: {})
             }
             .navigationTitle("Contents")
         }
     }
 }
-
