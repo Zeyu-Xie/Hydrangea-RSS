@@ -4,18 +4,31 @@ import UIKit
 import URLImage
 
 struct RSSItem: Identifiable {
+    
     let id = UUID()
+    
     var title: String
-    var link: String
+    var link: String?
     var description: NSAttributedString?
     var pubDate: String?
     var generator: String?
     var imageURL: String?
     
+    func string() -> String {
+        var resultString = ""
+        resultString += "ID: \(self.id.uuidString)\n"
+        resultString += "Title: \(self.title)\n"
+        resultString += "Link: \(self.link ?? "nil")\n"
+        resultString += "PubDate: \(self.pubDate ?? "nil")\n"
+        resultString += "Generator: \(self.generator ?? "nil")\n"
+        resultString += "ImageURL: \(self.imageURL ?? "nil")"
+        return resultString
+    }
+    
     func renderAsCard() -> FeedCardView {
         return FeedCardView(
             title: self.title,
-            link: self.link,
+            link: self.link!,
             description: self.description?.string,
             pubDate: self.pubDate,
             author: self.generator,
@@ -130,7 +143,7 @@ extension String {
 
 struct FeedCardView: View {
     var title: String
-    var link: String
+    var link: String?
     var description: String?
     var pubDate: String?
     var author: String?
@@ -173,7 +186,7 @@ struct FeedCardView: View {
                     .foregroundColor(.secondary)
             }
             
-            Link(destination: URL(string: link)!) {
+            Link(destination: URL(string: link!)!) {
                 Text("Read more")
                     .font(.footnote)
                     .foregroundColor(.blue)
