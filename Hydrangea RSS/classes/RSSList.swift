@@ -171,7 +171,7 @@ class RSSParserDelegate: NSObject, XMLParserDelegate {
             case "link":
                 currentLink = string
             case "description":
-                currentDescription = string
+                currentDescription += string
             case "pubDate":
                 currentPubDate = string
             case "author":
@@ -211,11 +211,10 @@ class RSSParserDelegate: NSObject, XMLParserDelegate {
         
         if isParsingItems {
             if elementName == "item" {
-                let attributedDescription = currentDescription.htmlToAttributedString()
                 let rssItem = RSSItem(
                     title: currentTitle.trimmed()!,
                     link: currentLink.trimmed(),
-                    description: attributedDescription,
+                    description: currentDescription.htmlToAttributedString(),
                     pubDate: currentPubDate.trimmed(),
                     generator: currentAuthor.trimmed(),
                     imageURL: currentImageURL.trimmed()

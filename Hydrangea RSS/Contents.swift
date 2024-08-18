@@ -75,7 +75,9 @@ struct Contents: View {
             }
             .onAppear {
                 rssList.source = UserDefaults.standard.string(forKey: "selectedFeedSource")!
-                rssList.load(completion: {})
+                rssList.load(completion: {
+//                    print(rssList.toString())
+                })
             }
             .navigationTitle("Contents")
         }
