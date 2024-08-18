@@ -65,13 +65,13 @@ struct HTMLTextView: UIViewRepresentable {
 
 class RSSParserDelegate: NSObject, XMLParserDelegate {
     var items: [RSSItem] = []
-    private var currentElement = ""
-    private var title = ""
-    private var link = ""
-    private var _description = ""
-    private var pubDate = ""
-    private var author = ""
-    private var imageURL = ""
+    private var currentElement: String = ""
+    private var title: String = ""
+    private var link: String? = nil
+    private var _description: String? = nil
+    private var pubDate: String? = nil
+    private var author: String? = nil
+    private var imageURL: String? = nil
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         currentElement = elementName
@@ -93,13 +93,13 @@ class RSSParserDelegate: NSObject, XMLParserDelegate {
         case "title":
             title += string
         case "link":
-            link += string
+            link = string
         case "description":
-            _description += string
+            _description = (_description == nil) ? string : _description!+string
         case "pubDate":
-            pubDate += string
+            pubDate = string
         case "author":
-            author += string
+            author = string
         default:
             break
         }
@@ -107,14 +107,14 @@ class RSSParserDelegate: NSObject, XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "item" {
-            let attributedDescription = _description.htmlToAttributedString() ?? NSAttributedString(string: _description)
-            var rssItem = RSSItem(
+            let attributedDescription = _description.htmlToAttributedString()
+            let rssItem = RSSItem(
                 title: title.trimmed()!,
                 link: link.trimmed(),
                 description: attributedDescription,
                 pubDate: pubDate.trimmed(),
                 generator: author.trimmed(),
-                imageURL: imageURL.trimmingCharacters(in: .whitespacesAndNewlines)
+                imageURL: imageURL.trimmed()
             )
             items.append(rssItem)
         }

@@ -38,4 +38,21 @@ extension String? {
             return "nil"
         }
     }
+    func trimmed() -> String? {
+        if let unwrappedString = self {
+            let trimmedString = unwrappedString.trimmingCharacters(in: .whitespacesAndNewlines)
+            return trimmedString.isEmpty ? nil : trimmedString
+        }
+        else {
+            return nil
+        }
+    }
+    func htmlToAttributedString() -> NSAttributedString? {
+        if let unwrappedString = self {
+            return unwrappedString.htmlToAttributedString()
+        }
+        else {
+            return nil
+        }
+    }
 }
