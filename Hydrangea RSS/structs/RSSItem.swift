@@ -14,7 +14,7 @@ struct RSSItem: Identifiable {
     var generator: String?
     var imageURL: String?
     
-    func string() -> String {
+    func toString() -> String {
         var resultString = ""
         resultString += "ID: \(self.id.toString())\n"
         resultString += "Title: \(self.title.toString())\n"

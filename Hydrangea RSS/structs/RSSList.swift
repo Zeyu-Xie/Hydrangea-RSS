@@ -1,31 +1,32 @@
 import Foundation
 import Combine
 
-struct RSSList: Identifiable {
+class RSSList: Identifiable {
     
     // First Class - source
-    let source: String
+    var source: String = ""
     
     // Second Class - data
     let id = UUID()
-    let title: String
-    let link: String?
-    let description: String?
-    let lastBuildDate: String?
-    let generator: String?
-    let webMaster: String?
-    let language: String?
-    let ttl: Int?
+    var title: String = ""
+    var link: String? = nil
+    var description: String? = nil
+    var lastBuildDate: String? = nil
+    var generator: String? = nil
+    var webMaster: String? = nil
+    var language: String? = nil
+    var ttl: Int? = 0
     
     // Third Class - item list
-    let list: [RSSItem]
+    var list: [RSSItem] = []
     
     // Fourth Class - status
-    let status: String
+    var isLoading: Bool = false
     
     // Method - to string
-    func string() -> String {
+    func toString() -> String {
         var resultString = ""
+        resultString += "Source: \(self.source.toString())\n"
         resultString += "ID: \(self.id.uuidString)\n"
         resultString += "Title: \(self.title)\n"
         resultString += "Link: \(self.link ?? "nil")\n"
@@ -33,49 +34,73 @@ struct RSSList: Identifiable {
         resultString += "LastBuildDate: \(self.lastBuildDate ?? "nil")\n"
         resultString += "Generator: \(self.generator ?? "nil")\n"
         resultString += "WebMaster: \(self.webMaster ?? "nil")\n"
-        resultString += "Language: \(self.language ?? "nil")"
-        resultString += "TTL: \(self.ttl.toString()))"
+        resultString += "Language: \(self.language ?? "nil")\n"
+        resultString += "TTL: \(self.ttl.toString())"
+        for item in self.list {
+            resultString += "\n---\n"
+            resultString += item.toString()
+        }
         return resultString
     }
     
-    // Method - load
-    func load() {
+    // 修改 load 方法接受一个完成闭包
+    func load(completion: @escaping () -> Void) {
+        self.isLoading = true
         
+        guard let url = URL(string: self.source) else {
+            self.isLoading = false
+            completion()
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    print("Failed to load data: \(error?.localizedDescription ?? "Unknown error")")
+                    completion()
+                }
+                return
+            }
+
+            // 在主线程中解析数据
+            DispatchQueue.main.async {
+                self.parse(data: data, completion: {
+                    self.isLoading = false
+                    completion()
+                })
+
+            }
+        }.resume()
     }
-    
-//    func renderAsList() -> FeedListView {
-//        
-//    }
+
+    func parse(data: Data, completion: @escaping () -> Void) {
+        let parser = XMLParser(data: data)
+        let rssParserDelegate = RSSParserDelegate()
+        parser.delegate = rssParserDelegate
+        if parser.parse() {
+            DispatchQueue.main.async {
+                self.list = rssParserDelegate.items
+                completion()
+            }
+        }
+    }
 }
 
 class FeedListView: ObservableObject {
     
     @Published var items: [RSSItem] = []
     @Published private var selectedItem: String = ""
-
+    
+    var rssList = RSSList()
+    
     func fetchRSSFeed() {
+        rssList.source = UserDefaults.standard.string(forKey: "selectedFeedSource")!
+        rssList.load(completion: { [self] in
+            print(rssList.toString())
+        })
         
-        items = []
-        
-        selectedItem = UserDefaults.standard.string(forKey: "selectedFeedSource") ?? ""
-        
-        guard let url = URL(string: selectedItem) else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else { return }
-            self.parse(data: data)
-        }.resume()
     }
-
-    private func parse(data: Data) {
-        let parser = XMLParser(data: data)
-        let rssParserDelegate = RSSParserDelegate()
-        parser.delegate = rssParserDelegate
-
-        if parser.parse() {
-            DispatchQueue.main.async {
-                self.items = rssParserDelegate.items
-            }
-        }
-    }
+    
 }
