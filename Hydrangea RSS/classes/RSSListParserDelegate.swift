@@ -2,7 +2,7 @@ import Foundation
 import Combine
 
 class RSSParserDelegate: NSObject, XMLParserDelegate {
-    var items: [RSSItem] = []
+    var rssListItems: [RSSItem] = []
     var isParsingItems: Bool = false
     
     var rssListCoreData: RSSListCoreData = RSSListCoreData()
@@ -92,7 +92,7 @@ class RSSParserDelegate: NSObject, XMLParserDelegate {
                     generator: currentAuthor.trimmed(),
                     imageURL: currentImageURL.trimmed()
                 )
-                items.append(rssItem)
+                rssListItems.append(rssItem)
             }
         }
     }
