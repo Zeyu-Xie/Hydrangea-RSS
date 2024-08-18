@@ -8,9 +8,9 @@ struct RSSList: Identifiable {
     
     // Second Class - data
     let id = UUID()
-    let title: String?
+    let title: String
     let link: String?
-    let description: NSAttributedString?
+    let description: String?
     let lastBuildDate: String?
     let generator: String?
     let webMaster: String?
@@ -22,6 +22,21 @@ struct RSSList: Identifiable {
     
     // Fourth Class - status
     let status: String
+    
+    // Method - to string
+    func string() -> String {
+        var resultString = ""
+        resultString += "ID: \(self.id.uuidString)\n"
+        resultString += "Title: \(self.title)\n"
+        resultString += "Link: \(self.link ?? "nil")\n"
+        resultString += "Description: \(self.description ?? "nil")\n"
+        resultString += "LastBuildDate: \(self.lastBuildDate ?? "nil")\n"
+        resultString += "Generator: \(self.generator ?? "nil")\n"
+        resultString += "WebMaster: \(self.webMaster ?? "nil")\n"
+        resultString += "Language: \(self.language ?? "nil")"
+        resultString += "TTL: \(self.ttl.toString()))"
+        return resultString
+    }
     
     // Method - load
     func load() {

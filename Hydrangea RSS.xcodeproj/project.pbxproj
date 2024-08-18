@@ -21,6 +21,10 @@
 		93D96D082C6F9ECA0016D057 /* Hydrangea_RSSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D96D072C6F9ECA0016D057 /* Hydrangea_RSSUITests.swift */; };
 		93D96D0A2C6F9ECA0016D057 /* Hydrangea_RSSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D96D092C6F9ECA0016D057 /* Hydrangea_RSSUITestsLaunchTests.swift */; };
 		93E8D9892C719E680021A821 /* RSSList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E8D9882C719E670021A821 /* RSSList.swift */; };
+		93E8D98C2C71AB5B0021A821 /* extensions_String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E8D98B2C71AB5B0021A821 /* extensions_String.swift */; };
+		93E8D98E2C71AB900021A821 /* extensions_Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E8D98D2C71AB900021A821 /* extensions_Int.swift */; };
+		93E8D9902C71ADCB0021A821 /* extensions_UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E8D98F2C71ADCB0021A821 /* extensions_UUID.swift */; };
+		93E8D9922C71AE840021A821 /* extension_NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E8D9912C71AE840021A821 /* extension_NSAttributedString.swift */; };
 		93F2CC552C6FA8C100F4D992 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2CC542C6FA8C100F4D992 /* Settings.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +61,10 @@
 		93D96D072C6F9ECA0016D057 /* Hydrangea_RSSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hydrangea_RSSUITests.swift; sourceTree = "<group>"; };
 		93D96D092C6F9ECA0016D057 /* Hydrangea_RSSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hydrangea_RSSUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		93E8D9882C719E670021A821 /* RSSList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSList.swift; sourceTree = "<group>"; };
+		93E8D98B2C71AB5B0021A821 /* extensions_String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions_String.swift; sourceTree = "<group>"; };
+		93E8D98D2C71AB900021A821 /* extensions_Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions_Int.swift; sourceTree = "<group>"; };
+		93E8D98F2C71ADCB0021A821 /* extensions_UUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions_UUID.swift; sourceTree = "<group>"; };
+		93E8D9912C71AE840021A821 /* extension_NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension_NSAttributedString.swift; sourceTree = "<group>"; };
 		93F2CC532C6FA23B00F4D992 /* Hydrangea RSS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hydrangea RSS.entitlements"; sourceTree = "<group>"; };
 		93F2CC542C6FA8C100F4D992 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +144,7 @@
 		93D96CEB2C6F9EC90016D057 /* Hydrangea RSS */ = {
 			isa = PBXGroup;
 			children = (
+				93E8D98A2C71AB400021A821 /* extensions */,
 				932E9FC92C703705008F7E12 /* structs */,
 				93F2CC532C6FA23B00F4D992 /* Hydrangea RSS.entitlements */,
 				93D96CEC2C6F9EC90016D057 /* Hydrangea_RSSApp.swift */,
@@ -173,6 +182,17 @@
 				93D96D092C6F9ECA0016D057 /* Hydrangea_RSSUITestsLaunchTests.swift */,
 			);
 			path = "Hydrangea RSSUITests";
+			sourceTree = "<group>";
+		};
+		93E8D98A2C71AB400021A821 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				93E8D98B2C71AB5B0021A821 /* extensions_String.swift */,
+				93E8D9912C71AE840021A821 /* extension_NSAttributedString.swift */,
+				93E8D98D2C71AB900021A821 /* extensions_Int.swift */,
+				93E8D98F2C71ADCB0021A821 /* extensions_UUID.swift */,
+			);
+			path = extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,11 +335,15 @@
 				93F2CC552C6FA8C100F4D992 /* Settings.swift in Sources */,
 				93C5AFF52C70839200DF7B4C /* SourceSwitch.swift in Sources */,
 				93CD8E2C2C7032A400EE60EC /* Contents.swift in Sources */,
+				93E8D98E2C71AB900021A821 /* extensions_Int.swift in Sources */,
 				93D96CEF2C6F9EC90016D057 /* ContentView.swift in Sources */,
 				932E9FCB2C70372F008F7E12 /* RSSItem.swift in Sources */,
+				93E8D98C2C71AB5B0021A821 /* extensions_String.swift in Sources */,
 				93E8D9892C719E680021A821 /* RSSList.swift in Sources */,
 				93D96CED2C6F9EC90016D057 /* Hydrangea_RSSApp.swift in Sources */,
+				93E8D9922C71AE840021A821 /* extension_NSAttributedString.swift in Sources */,
 				93CD8E2A2C702D4C00EE60EC /* RSSFeedSources.swift in Sources */,
+				93E8D9902C71ADCB0021A821 /* extensions_UUID.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

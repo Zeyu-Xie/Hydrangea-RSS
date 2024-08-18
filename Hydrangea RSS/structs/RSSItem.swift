@@ -16,20 +16,21 @@ struct RSSItem: Identifiable {
     
     func string() -> String {
         var resultString = ""
-        resultString += "ID: \(self.id.uuidString)\n"
-        resultString += "Title: \(self.title)\n"
-        resultString += "Link: \(self.link ?? "nil")\n"
-        resultString += "PubDate: \(self.pubDate ?? "nil")\n"
-        resultString += "Generator: \(self.generator ?? "nil")\n"
-        resultString += "ImageURL: \(self.imageURL ?? "nil")"
+        resultString += "ID: \(self.id.toString())\n"
+        resultString += "Title: \(self.title.toString())\n"
+        resultString += "Link: \(self.link.toString())\n"
+        resultString += "PubDate: \(self.pubDate.toString())\n"
+        resultString += "Generator: \(self.generator.toString())\n"
+        resultString += "ImageURL: \(self.imageURL.toString())\n"
+        resultString += "Description: \(self.description.toString())"
         return resultString
     }
     
     func renderAsCard() -> FeedCardView {
         return FeedCardView(
             title: self.title,
-            link: self.link!,
-            description: self.description?.string,
+            link: self.link,
+            description: self.description?.string ?? nil,
             pubDate: self.pubDate,
             author: self.generator,
             imageURL: self.imageURL
@@ -40,7 +41,7 @@ struct RSSItem: Identifiable {
         return FeedContentView(
             title: self.title,
             link: self.link,
-            description: self.description?.string,
+            description: self.description?.string ?? nil,
             pubDate: self.pubDate,
             author: self.generator,
             imageURL: self.imageURL
@@ -108,35 +109,14 @@ class RSSParserDelegate: NSObject, XMLParserDelegate {
         if elementName == "item" {
             let attributedDescription = _description.htmlToAttributedString() ?? NSAttributedString(string: _description)
             var rssItem = RSSItem(
-                title: title.trimmed!,
-                link: link.trimmed!,
+                title: title.trimmed()!,
+                link: link.trimmed(),
                 description: attributedDescription,
-                pubDate: pubDate.trimmed,
-                generator: author.trimmed,
+                pubDate: pubDate.trimmed(),
+                generator: author.trimmed(),
                 imageURL: imageURL.trimmingCharacters(in: .whitespacesAndNewlines)
             )
             items.append(rssItem)
-        }
-    }
-}
-
-extension String {
-    
-    var trimmed: String? {
-        let trimmedString = self.trimmingCharacters(in: .whitespacesAndNewlines)
-        return trimmedString.isEmpty ? nil : trimmedString
-    }
-    
-    func htmlToAttributedString() -> NSAttributedString? {
-        guard let data = data(using: .utf8) else { return nil }
-        do {
-            return try NSAttributedString(data: data,
-                                          options: [.documentType: NSAttributedString.DocumentType.html,
-                                                    .characterEncoding: String.Encoding.utf8.rawValue],
-                                          documentAttributes: nil)
-        } catch {
-            print("Error converting HTML to NSAttributedString: \(error)")
-            return nil
         }
     }
 }
