@@ -14,7 +14,6 @@
 		93C7DA402C72493E004715A4 /* parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C7DA3F2C72493E004715A4 /* parse.swift */; };
 		93C7DA422C72497F004715A4 /* FeedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C7DA412C72497F004715A4 /* FeedCardView.swift */; };
 		93C7DA442C7249B7004715A4 /* FeedContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C7DA432C7249B7004715A4 /* FeedContentView.swift */; };
-		93C7DA462C7249EC004715A4 /* HTMLTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C7DA452C7249EC004715A4 /* HTMLTextView.swift */; };
 		93CD8E2A2C702D4C00EE60EC /* RSSFeedSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CD8E292C702D4C00EE60EC /* RSSFeedSources.swift */; };
 		93CD8E2C2C7032A400EE60EC /* Contents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CD8E2B2C7032A400EE60EC /* Contents.swift */; };
 		93D96CED2C6F9EC90016D057 /* Hydrangea_RSSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D96CEC2C6F9EC90016D057 /* Hydrangea_RSSApp.swift */; };
@@ -29,6 +28,7 @@
 		93E8D98E2C71AB900021A821 /* extensions_Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E8D98D2C71AB900021A821 /* extensions_Int.swift */; };
 		93E8D9902C71ADCB0021A821 /* extensions_UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E8D98F2C71ADCB0021A821 /* extensions_UUID.swift */; };
 		93E8D9922C71AE840021A821 /* extension_NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E8D9912C71AE840021A821 /* extension_NSAttributedString.swift */; };
+		93EE761E2C72508600917507 /* HTMLTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EE761D2C72508600917507 /* HTMLTextView.swift */; };
 		93F2CC552C6FA8C100F4D992 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F2CC542C6FA8C100F4D992 /* Settings.swift */; };
 		93F73EEA2C72204C00782FD7 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F73EE92C72204C00782FD7 /* LoadingView.swift */; };
 		93F73EFD2C72456400782FD7 /* RSSListCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F73EFC2C72456400782FD7 /* RSSListCoreData.swift */; };
@@ -58,7 +58,6 @@
 		93C7DA3F2C72493E004715A4 /* parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = parse.swift; sourceTree = "<group>"; };
 		93C7DA412C72497F004715A4 /* FeedCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCardView.swift; sourceTree = "<group>"; };
 		93C7DA432C7249B7004715A4 /* FeedContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedContentView.swift; sourceTree = "<group>"; };
-		93C7DA452C7249EC004715A4 /* HTMLTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLTextView.swift; sourceTree = "<group>"; };
 		93CD8E292C702D4C00EE60EC /* RSSFeedSources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedSources.swift; sourceTree = "<group>"; };
 		93CD8E2B2C7032A400EE60EC /* Contents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contents.swift; sourceTree = "<group>"; };
 		93D96CE92C6F9EC90016D057 /* Hydrangea RSS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hydrangea RSS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +75,7 @@
 		93E8D98D2C71AB900021A821 /* extensions_Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions_Int.swift; sourceTree = "<group>"; };
 		93E8D98F2C71ADCB0021A821 /* extensions_UUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions_UUID.swift; sourceTree = "<group>"; };
 		93E8D9912C71AE840021A821 /* extension_NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension_NSAttributedString.swift; sourceTree = "<group>"; };
+		93EE761D2C72508600917507 /* HTMLTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLTextView.swift; sourceTree = "<group>"; };
 		93F2CC532C6FA23B00F4D992 /* Hydrangea RSS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hydrangea RSS.entitlements"; sourceTree = "<group>"; };
 		93F2CC542C6FA8C100F4D992 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		93F73EE92C72204C00782FD7 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -227,6 +227,7 @@
 				93F73EE92C72204C00782FD7 /* LoadingView.swift */,
 				93C7DA412C72497F004715A4 /* FeedCardView.swift */,
 				93C7DA432C7249B7004715A4 /* FeedContentView.swift */,
+				93EE761D2C72508600917507 /* HTMLTextView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -235,7 +236,6 @@
 			isa = PBXGroup;
 			children = (
 				93F73EFC2C72456400782FD7 /* RSSListCoreData.swift */,
-				93C7DA452C7249EC004715A4 /* HTMLTextView.swift */,
 			);
 			path = structs;
 			sourceTree = "<group>";
@@ -390,7 +390,7 @@
 				93D96CED2C6F9EC90016D057 /* Hydrangea_RSSApp.swift in Sources */,
 				93E8D9922C71AE840021A821 /* extension_NSAttributedString.swift in Sources */,
 				93CD8E2A2C702D4C00EE60EC /* RSSFeedSources.swift in Sources */,
-				93C7DA462C7249EC004715A4 /* HTMLTextView.swift in Sources */,
+				93EE761E2C72508600917507 /* HTMLTextView.swift in Sources */,
 				93C7DA422C72497F004715A4 /* FeedCardView.swift in Sources */,
 				93C7DA442C7249B7004715A4 /* FeedContentView.swift in Sources */,
 				93F73EEA2C72204C00782FD7 /* LoadingView.swift in Sources */,

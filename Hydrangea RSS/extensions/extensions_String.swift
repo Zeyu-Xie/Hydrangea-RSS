@@ -11,11 +11,11 @@ extension String {
     func toString() -> String {
         return self
     }
-    func trimmed() -> String? {
+    func toOptionalString() -> String? {
         let trimmedString = self.trimmingCharacters(in: .whitespacesAndNewlines)
         return trimmedString.isEmpty ? nil : trimmedString
     }
-    func htmlToAttributedString() -> NSAttributedString? {
+    func toNSAttributedString() -> NSAttributedString? {
         guard let data = data(using: .utf8) else { return nil }
         do {
             return try NSAttributedString(data: data,
@@ -38,7 +38,7 @@ extension String? {
             return "nil"
         }
     }
-    func trimmed() -> String? {
+    func toOptionalString() -> String? {
         if let unwrappedString = self {
             let trimmedString = unwrappedString.trimmingCharacters(in: .whitespacesAndNewlines)
             return trimmedString.isEmpty ? nil : trimmedString
@@ -47,9 +47,9 @@ extension String? {
             return nil
         }
     }
-    func htmlToAttributedString() -> NSAttributedString? {
+    func toNSAttributedString() -> NSAttributedString? {
         if let unwrappedString = self {
-            return unwrappedString.htmlToAttributedString()
+            return unwrappedString.toNSAttributedString()
         }
         else {
             return nil

@@ -71,9 +71,3 @@ class RSSItem: Identifiable {
     }
     
 }
-
-
-
-
-
-

@@ -8,7 +8,7 @@
 import Foundation
 
 struct RSSListCoreData {
-    var title: String = ""
+    var title: String? = nil
     var link: String? = nil
     var description: String? = nil
     var generator: String? = nil

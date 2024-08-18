@@ -85,12 +85,12 @@ class RSSParserDelegate: NSObject, XMLParserDelegate {
         if isParsingItems {
             if elementName == "item" {
                 let rssItem = RSSItem(
-                    title: currentTitle.trimmed()!,
-                    link: currentLink.trimmed(),
-                    description: currentDescription.htmlToAttributedString(),
-                    pubDate: currentPubDate.trimmed(),
-                    generator: currentAuthor.trimmed(),
-                    imageURL: currentImageURL.trimmed()
+                    title: currentTitle.toOptionalString()!,
+                    link: currentLink.toOptionalString(),
+                    description: currentDescription.toNSAttributedString(),
+                    pubDate: currentPubDate.toOptionalString(),
+                    generator: currentAuthor.toOptionalString(),
+                    imageURL: currentImageURL.toOptionalString()
                 )
                 rssListItems.append(rssItem)
             }

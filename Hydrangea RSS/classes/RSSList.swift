@@ -50,16 +50,15 @@ class RSSList: ObservableObject, Identifiable {
     
     // Method - load
     func load(completion: @escaping () -> Void) {
+        
         self.isLoading = true
-    
-        guard let url = URL(string: self.source) else {
+        
+        guard let sourceURL = URL(string: self.source) else {
             self.isLoading = false
             completion()
             return
         }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            
+        URLSession.shared.dataTask(with: sourceURL) { data, response, error in
             // Failed
             guard let data = data else {
                 DispatchQueue.main.async {
@@ -69,19 +68,18 @@ class RSSList: ObservableObject, Identifiable {
                 }
                 return
             }
-            
             // Successful
             DispatchQueue.main.async {
-                parse(data: data) { result, cd in
-                    self.list = result
-                    self.title = cd.title
-                    self.link = cd.link
-                    self.description = cd.description?.htmlToAttributedString()
-                    self.lastBuildDate = cd.lastBuildDate
-                    self.generator = cd.generator
-                    self.webMaster = cd.webMaster
-                    self.language = cd.language
-                    self.ttl = Int(cd.ttl ?? "0")
+                parse(data: data) { rssListItems, rssListCoreData in
+                    self.list = rssListItems
+                    self.title = rssListCoreData.title
+                    self.link = rssListCoreData.link
+                    self.description = rssListCoreData.description?.toNSAttributedString()
+                    self.lastBuildDate = rssListCoreData.lastBuildDate
+                    self.generator = rssListCoreData.generator
+                    self.webMaster = rssListCoreData.webMaster
+                    self.language = rssListCoreData.language
+                    self.ttl = Int(rssListCoreData.ttl ?? "0")
                     self.isLoading = false
                     completion()
                 }
