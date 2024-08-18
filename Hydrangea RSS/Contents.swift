@@ -66,7 +66,7 @@ struct Contents: View {
             NavigationLink(destination: FeedContentView(
                 title: item.title,
                 link: item.link,
-                description: item.description.string,
+                description: item.description?.string,
                 pubDate: item.pubDate,
                 author: item.generator,
                 imageURL: item.imageURL
@@ -74,7 +74,7 @@ struct Contents: View {
                 FeedCardView(
                     title: item.title,
                     link: item.link,
-                    description: item.description.string,
+                    description: item.description?.string,
                     pubDate: item.pubDate,
                     author: item.generator,
                     imageURL: item.imageURL

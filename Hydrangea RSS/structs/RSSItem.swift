@@ -5,18 +5,18 @@ import URLImage
 
 struct RSSItem: Identifiable {
     let id = UUID()
-    let title: String
-    let link: String
-    let description: NSAttributedString
-    let pubDate: String
-    let generator: String
-    let imageURL: String
+    var title: String
+    var link: String
+    var description: NSAttributedString?
+    var pubDate: String?
+    var generator: String?
+    var imageURL: String?
     
     func renderAsCard() -> FeedCardView {
         return FeedCardView(
             title: self.title,
             link: self.link,
-            description: self.description.string,
+            description: self.description?.string,
             pubDate: self.pubDate,
             author: self.generator,
             imageURL: self.imageURL
@@ -27,7 +27,7 @@ struct RSSItem: Identifiable {
         return FeedContentView(
             title: self.title,
             link: self.link,
-            description: self.description.string,
+            description: self.description?.string,
             pubDate: self.pubDate,
             author: self.generator,
             imageURL: self.imageURL
@@ -38,14 +38,12 @@ struct RSSItem: Identifiable {
 
 struct HTMLTextView: UIViewRepresentable {
     let html: NSAttributedString
-    
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
         textView.isEditable = false
         textView.backgroundColor = .clear
         return textView
     }
-    
     func updateUIView(_ uiView: UITextView, context: Context) {
         uiView.attributedText = html
     }
@@ -96,12 +94,12 @@ class RSSParserDelegate: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "item" {
             let attributedDescription = _description.htmlToAttributedString() ?? NSAttributedString(string: _description)
-            let rssItem = RSSItem(
-                title: title.trimmingCharacters(in: .whitespacesAndNewlines),
-                link: link.trimmingCharacters(in: .whitespacesAndNewlines),
+            var rssItem = RSSItem(
+                title: title.trimmed!,
+                link: link.trimmed!,
                 description: attributedDescription,
-                pubDate: pubDate.trimmingCharacters(in: .whitespacesAndNewlines),
-                generator: author.trimmingCharacters(in: .whitespacesAndNewlines),
+                pubDate: pubDate.trimmed,
+                generator: author.trimmed,
                 imageURL: imageURL.trimmingCharacters(in: .whitespacesAndNewlines)
             )
             items.append(rssItem)
@@ -110,6 +108,12 @@ class RSSParserDelegate: NSObject, XMLParserDelegate {
 }
 
 extension String {
+    
+    var trimmed: String? {
+        let trimmedString = self.trimmingCharacters(in: .whitespacesAndNewlines)
+        return trimmedString.isEmpty ? nil : trimmedString
+    }
+    
     func htmlToAttributedString() -> NSAttributedString? {
         guard let data = data(using: .utf8) else { return nil }
         do {
@@ -127,8 +131,8 @@ extension String {
 struct FeedCardView: View {
     var title: String
     var link: String
-    var description: String
-    var pubDate: String
+    var description: String?
+    var pubDate: String?
     var author: String?
     var imageURL: String?
     
@@ -156,14 +160,18 @@ struct FeedCardView: View {
                     .foregroundColor(.secondary)
             }
             
-            Text(description)
-                .font(.body)
-                .foregroundColor(.secondary)
-                .lineLimit(3)
+            if let description = description {
+                Text(description)
+                    .font(.body)
+                    .foregroundColor(.secondary)
+                    .lineLimit(3)
+            }
             
-            Text(pubDate)
-                .font(.footnote)
-                .foregroundColor(.secondary)
+            if let pubDate = pubDate {
+                Text(pubDate)
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+            }
             
             Link(destination: URL(string: link)!) {
                 Text("Read more")

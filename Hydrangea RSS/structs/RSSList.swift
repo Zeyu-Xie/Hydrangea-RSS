@@ -1,10 +1,3 @@
-//
-//  RSSList.swift
-//  Hydrangea RSS
-//
-//  Created by Zeyu Xie on 2024/8/18.
-//
-
 import Foundation
 import Combine
 
