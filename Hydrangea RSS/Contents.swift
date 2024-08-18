@@ -4,7 +4,7 @@ import SwiftUI
 struct Contents: View {
     
     @State private var rssFeedSources: [String] = []
-    @State private var rssList: RSSList = RSSList()
+    @State private var rssList: RSSList = RSSList(source: "https://rsshub.app/caixin/article")
     @State private var list: [RSSItem] = []
     @State private var showingAlert: Bool = false
     
@@ -65,7 +65,6 @@ struct Contents: View {
                 rssList.source = UserDefaults.standard.string(forKey: "selectedFeedSource")!
                 rssList.load(completion: {
                     list = rssList.list
-                    print(rssList.toString())
                 })
             }
             .navigationTitle("Contents")

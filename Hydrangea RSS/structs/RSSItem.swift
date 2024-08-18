@@ -3,10 +3,12 @@ import SwiftUI
 import UIKit
 import URLImage
 
-struct RSSItem: Identifiable {
+class RSSItem: Identifiable {
     
+    // Variable - ID
     let id = UUID()
     
+    // Variable - Data
     var title: String
     var link: String?
     var description: NSAttributedString?
@@ -14,6 +16,17 @@ struct RSSItem: Identifiable {
     var generator: String?
     var imageURL: String?
     
+    // Function - init
+    init(title: String, link: String? = nil, description: NSAttributedString? = nil, pubDate: String? = nil, generator: String? = nil, imageURL: String? = nil) {
+        self.title = title
+        self.link = link
+        self.description = description
+        self.pubDate = pubDate
+        self.generator = generator
+        self.imageURL = imageURL
+    }
+    
+    // Function - toString
     func toString() -> String {
         var resultString = ""
         resultString += "ID: \(self.id.toString())\n"
@@ -26,6 +39,7 @@ struct RSSItem: Identifiable {
         return resultString
     }
     
+    // FeedCardView
     func renderAsCard() -> FeedCardView {
         return FeedCardView(
             title: self.title,
@@ -37,6 +51,7 @@ struct RSSItem: Identifiable {
         )
     }
     
+    // FeedContentView
     func renderAsContent() -> FeedContentView {
         return FeedContentView(
             title: self.title,
@@ -63,63 +78,6 @@ struct HTMLTextView: UIViewRepresentable {
     }
 }
 
-class RSSParserDelegate: NSObject, XMLParserDelegate {
-    var items: [RSSItem] = []
-    private var currentElement: String = ""
-    private var title: String = ""
-    private var link: String? = nil
-    private var _description: String? = nil
-    private var pubDate: String? = nil
-    private var author: String? = nil
-    private var imageURL: String? = nil
-    
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        currentElement = elementName
-        if currentElement == "item" {
-            title = ""
-            link = ""
-            _description = ""
-            pubDate = ""
-            author = ""
-            imageURL = ""
-        }
-        if currentElement == "itunes:image" {
-            imageURL = attributeDict["href"] ?? ""
-        }
-    }
-    
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
-        switch currentElement {
-        case "title":
-            title += string
-        case "link":
-            link = string
-        case "description":
-            _description = (_description == nil) ? string : _description!+string
-        case "pubDate":
-            pubDate = string
-        case "author":
-            author = string
-        default:
-            break
-        }
-    }
-    
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName == "item" {
-            let attributedDescription = _description.htmlToAttributedString()
-            let rssItem = RSSItem(
-                title: title.trimmed()!,
-                link: link.trimmed(),
-                description: attributedDescription,
-                pubDate: pubDate.trimmed(),
-                generator: author.trimmed(),
-                imageURL: imageURL.trimmed()
-            )
-            items.append(rssItem)
-        }
-    }
-}
 
 struct FeedCardView: View {
     var title: String
