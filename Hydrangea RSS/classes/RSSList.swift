@@ -108,7 +108,7 @@ func parse(data: Data, completion: @escaping ([RSSItem], RSSListCoreData) -> Voi
     
     if parser.parse() {
         DispatchQueue.main.async {
-            let resultArray = rssParserDelegate.rssListItems
+            let resultArray = rssParserDelegate.items
             let cd = rssParserDelegate.rssListCoreData
             completion(resultArray, cd)
         }
