@@ -1,6 +1,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    init() {
+        initUserConfig()
+    }
+    
     var body: some View {
         TabView {
             Contents()

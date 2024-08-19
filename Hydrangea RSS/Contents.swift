@@ -3,6 +3,7 @@ import SwiftUI
 
 struct Contents: View {
     
+    @StateObject private var userConfig: UserConfig = getUserConfig()
     @StateObject private var rssList: RSSList = RSSList(source: "")
     
     var body: some View {
