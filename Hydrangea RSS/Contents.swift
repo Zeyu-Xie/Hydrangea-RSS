@@ -4,7 +4,6 @@ import SwiftUI
 struct Contents: View {
     
     @StateObject private var userConfig: UserConfig = getUserConfig()
-    @StateObject private var rssList: RSSList = RSSList(source: "")
     
     var body: some View {
         NavigationStack {
@@ -25,48 +24,56 @@ struct Contents: View {
                     
                     Divider().padding(.vertical)
                     
-                    if rssList.list.isEmpty {
-                        
-                        // Blank & Loading
-                        if rssList.isLoading {
-                            LoadingView()
-                        }
-                        
-                        // Blank & Loaded
-                        else {
-                            Text("Your source \(Text(UserDefaults.standard.string(forKey: "selectedFeedSource") ?? "").foregroundColor(.blue)) does not have any feeds now.")
-                                .multilineTextAlignment(.leading)
+                    if let rssList = userConfig.rssList {
+                        if rssList.list.isEmpty {
+                            
+                            // Blank & Loading
+                            if rssList.isLoading {
+                                LoadingView()
+                            }
+                            
+                            // Blank & Loaded
+                            else {
+                                Text("Your source \(Text(UserDefaults.standard.string(forKey: "selectedFeedSource") ?? "").foregroundColor(.blue)) does not have any feeds now.")
+                                    .multilineTextAlignment(.leading)
+                                    .padding(.vertical)
+                                    .foregroundColor(.gray)
+                            }
+                        } else {
+                            
+                            // Not Blank & Loading
+                            if rssList.isLoading {
+                                LoadingView()
+                            }
+                            
+                            // Not Blank
+                            ForEach(rssList.list) { item in
+                                NavigationLink(destination: FeedContentView(rssItem: item)) {
+                                    FeedCardView(rssItem: item)
+                                        .background(Color(.systemGray6))
+                                        .cornerRadius(8)
+                                }
+                                .buttonStyle(PlainButtonStyle()) // 保持扁平化按钮样式
                                 .padding(.vertical)
-                                .foregroundColor(.gray)
+                            }
                         }
                     } else {
-                        
-                        // Not Blank & Loading
-                        if rssList.isLoading {
-                            LoadingView()
-                        }
-                        
-                        // Not Blank
-                        ForEach(rssList.list) { item in
-                            NavigationLink(destination: FeedContentView(rssItem: item)) {
-                                FeedCardView(rssItem: item)
-                                    .background(Color(.systemGray6))
-                                    .cornerRadius(8)
-                            }
-                            .buttonStyle(PlainButtonStyle()) // 保持扁平化按钮样式
+                        Text("You have not chosen a source yet.")
+                            .multilineTextAlignment(.leading)
                             .padding(.vertical)
-                        }
+                            .foregroundColor(.gray)
                     }
+                    
+                    
                 }
                 .padding(.horizontal)
             }
-            .onAppear {
-                rssList.source = UserDefaults.standard.string(forKey: "selectedFeedSource")!
-                rssList.load(completion: {
-                    print(rssList.toString())
+            .navigationTitle("Contents")
+            .onAppear() {
+                userConfig.rssList?.load(completion: {
+                    
                 })
             }
-            .navigationTitle("Contents")
         }
     }
 }

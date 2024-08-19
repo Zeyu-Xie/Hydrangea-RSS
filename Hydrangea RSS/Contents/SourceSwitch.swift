@@ -12,37 +12,29 @@ struct SourceSwitch: View {
     
     @Environment(\.dismiss) var dismiss
     
-    @State private var rssFeedSources: [String] = []
-    
-    init() {
-        // Get rssFeedSources - Case nil
-        if UserDefaults.standard.array(forKey: "rssFeedSources") == nil {
-            UserDefaults.standard.set([], forKey: "rssFeedSources")
-        }
-    }
+    @StateObject private var userConfig: UserConfig = getUserConfig()
     
     var body: some View {
         
         NavigationStack {
             List {
                 Section(header: Text("Local Sources")) {
-                    ForEach(rssFeedSources, id: \.self) { item in
-                        Button(action: {
-                            UserDefaults.standard.set(item, forKey: "selectedFeedSource")
-                            dismiss()
-                        }) {
-                            Text(item)
+                    if let sourceList = userConfig.sourceList {
+                        ForEach(sourceList.list, id: \.self) { item in
+                            Button(action: {
+                                userConfig.rssList = RSSList(source: item)
+                                userConfig.rssList?.load(completion: {
+                                    uploadUserConfig(userConfig: userConfig)
+                                    dismiss()
+                                })
+                            }) {
+                                Text(item)
+                            }
                         }
                     }
                 }
             }
             .navigationTitle("Source Switch")
-        }.onAppear {
-            // Get rssFeedSources - Case [...]
-            if let savedArray = UserDefaults.standard.array(forKey: "rssFeedSources") as? [String] {
-                rssFeedSources = savedArray
-            }
         }
-        
     }
 }

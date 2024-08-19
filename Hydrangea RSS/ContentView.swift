@@ -3,7 +3,8 @@ import SwiftUI
 struct ContentView: View {
     
     init() {
-        initUserConfig()
+        let userConfig: UserConfig = getUserConfig()
+        uploadUserConfig(userConfig: userConfig)
     }
     
     var body: some View {

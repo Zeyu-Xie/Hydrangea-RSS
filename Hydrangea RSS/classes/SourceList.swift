@@ -14,9 +14,9 @@ class SourceList: ObservableObject, Identifiable, Codable {
     @Published var name: String?
     @Published var list: [String]
 
-    init(name: String? = nil) {
+    init(name: String? = nil, list: [String]?) {
         self.name = name
-        self.list = []
+        self.list = list ?? []
     }
 
     enum CodingKeys: String, CodingKey {

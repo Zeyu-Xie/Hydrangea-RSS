@@ -10,36 +10,31 @@ import Combine
 
 class UserConfig: ObservableObject, Identifiable, Codable {
     let id = UUID()
-
-    @Published var lists: [SourceList]
-    @Published var currentList: SourceList?
-    @Published var currentSource: String?
-
+    
+    @Published var sourceList: SourceList?
+    @Published var rssList: RSSList?
+    
     init() {
-        self.lists = []
-        self.currentList = nil
-        self.currentSource = nil
+        self.sourceList = nil
+        self.rssList = nil
     }
-
+    
     enum CodingKeys: String, CodingKey {
-        case lists
-        case currentList
-        case currentSource
+        case sourceList
+        case rssList
     }
-
+    
     // Custom encoding and decoding to handle @Published properties
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.lists = try container.decode([SourceList].self, forKey: .lists)
-        self.currentList = try container.decodeIfPresent(SourceList.self, forKey: .currentList)
-        self.currentSource = try container.decodeIfPresent(String.self, forKey: .currentSource)
+        self.sourceList = try container.decodeIfPresent(SourceList.self, forKey: .sourceList)
+        self.rssList = try container.decodeIfPresent(RSSList.self, forKey: .rssList)
     }
-
+    
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(lists, forKey: .lists)
-        try container.encodeIfPresent(currentList, forKey: .currentList)
-        try container.encodeIfPresent(currentSource, forKey: .currentSource)
+        try container.encodeIfPresent(sourceList, forKey: .sourceList)
+        try container.encodeIfPresent(rssList, forKey: .rssList)
     }
 }
 
