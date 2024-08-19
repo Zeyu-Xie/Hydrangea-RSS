@@ -1,16 +1,12 @@
 import SwiftUI
 
 struct FeedCardView: View {
-    var title: String?
-    var link: String?
-    var description: String?
-    var pubDate: String?
-    var author: String?
-    var imageURL: String?
+    
+    @StateObject var rssItem: RSSItem
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            if let imageURL = imageURL, let url = URL(string: imageURL) {
+            if let imageURL = rssItem.imageURL, let url = URL(string: imageURL) {
                 AsyncImage(url: url) { image in
                     image
                         .resizable()
@@ -22,32 +18,32 @@ struct FeedCardView: View {
                 }
             }
             
-            if let title = title {
+            if let title = rssItem.title {
                 Text(title)
                     .font(.headline)
                     .foregroundColor(.primary)
             }
             
-            if let author = author {
+            if let author = rssItem.generator {
                 Text("By \(author)")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
             
-            if let description = description {
-                Text(description)
+            if let description = rssItem.description {
+                Text(description.toString())
                     .font(.body)
                     .foregroundColor(.secondary)
                     .lineLimit(3)
             }
             
-            if let pubDate = pubDate {
+            if let pubDate = rssItem.pubDate {
                 Text(pubDate)
                     .font(.footnote)
                     .foregroundColor(.secondary)
             }
             
-            Link(destination: URL(string: link!)!) {
+            Link(destination: URL(string: rssItem.link!)!) {
                 Text("Read more")
                     .font(.footnote)
                     .foregroundColor(.blue)

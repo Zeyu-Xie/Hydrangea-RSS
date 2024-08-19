@@ -47,24 +47,10 @@ struct Contents: View {
                         
                         // Not Blank
                         ForEach(rssList.list) { item in
-                            NavigationLink(destination: FeedContentView(
-                                title: item.title,
-                                link: item.link,
-                                description: item.description?.string,
-                                pubDate: item.pubDate,
-                                author: item.generator,
-                                imageURL: item.imageURL
-                            )) {
-                                FeedCardView(
-                                    title: item.title,
-                                    link: item.link,
-                                    description: item.description?.string,
-                                    pubDate: item.pubDate,
-                                    author: item.generator,
-                                    imageURL: item.imageURL
-                                )
-                                .background(Color(.systemGray6))
-                                .cornerRadius(8)
+                            NavigationLink(destination: FeedContentView(rssItem: item)) {
+                                FeedCardView(rssItem: item)
+                                    .background(Color(.systemGray6))
+                                    .cornerRadius(8)
                             }
                             .buttonStyle(PlainButtonStyle()) // 保持扁平化按钮样式
                             .padding(.vertical)

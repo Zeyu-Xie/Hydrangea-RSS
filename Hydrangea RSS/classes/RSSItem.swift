@@ -3,18 +3,18 @@ import SwiftUI
 import UIKit
 import URLImage
 
-class RSSItem: Identifiable {
+class RSSItem: ObservableObject, Identifiable {
     
     // Variable - ID
     let id = UUID()
     
     // Variable - Data
-    var title: String?
-    var link: String?
-    var description: NSAttributedString?
-    var pubDate: String?
-    var generator: String?
-    var imageURL: String?
+    @Published var title: String?
+    @Published var link: String?
+    @Published var description: NSAttributedString?
+    @Published var pubDate: String?
+    @Published var generator: String?
+    @Published var imageURL: String?
     
     // Function - init
     init(
@@ -45,29 +45,4 @@ class RSSItem: Identifiable {
         resultString += "Description: \(self.description.toString())"
         return resultString
     }
-    
-    // FeedCardView
-    func renderAsCard() -> FeedCardView {
-        return FeedCardView(
-            title: self.title,
-            link: self.link,
-            description: self.description?.string ?? nil,
-            pubDate: self.pubDate,
-            author: self.generator,
-            imageURL: self.imageURL
-        )
-    }
-    
-    // FeedContentView
-    func renderAsContent() -> FeedContentView {
-        return FeedContentView(
-            title: self.title,
-            link: self.link,
-            description: self.description?.string ?? nil,
-            pubDate: self.pubDate,
-            author: self.generator,
-            imageURL: self.imageURL
-        )
-    }
-    
 }
