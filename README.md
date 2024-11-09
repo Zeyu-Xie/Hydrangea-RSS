@@ -1,2 +1,3 @@
 # Hydrangea-RSS
-An RSS Reader on iOS Devices.
+
+An iOS app for rendering RSS feeds.
